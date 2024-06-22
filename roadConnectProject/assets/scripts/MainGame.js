@@ -65,6 +65,11 @@ class MainGame extends Phaser.Scene {
         }
         console.log(localStorage.getItem("roadCLevel")) 
 
+        if(localStorage.getItem("roadCLevelComp")){
+            currentLvl=levelsData.length;
+            localStorage.setItem("roadCLevel", currentLvl);
+        }
+
         this.LevelsControll();       
     }
 
@@ -291,10 +296,12 @@ class MainGame extends Phaser.Scene {
             }
 
             if(currentLvl==3){
-                if(Phaser.Math.RoundTo(shapeContainer.getByName("block_4").angle)==180){
+                if(Phaser.Math.RoundTo(shapeContainer.getByName("block_4").angle)==180||
+                    Phaser.Math.RoundTo(shapeContainer.getByName("block_4").angle)==0){
                     shapeContainer.getByName("block_4").setAngle(0);
                 }
-                if(Phaser.Math.RoundTo(shapeContainer.getByName("block_5").angle)==180){
+                if(Phaser.Math.RoundTo(shapeContainer.getByName("block_5").angle)==180 ||
+                    Phaser.Math.RoundTo(shapeContainer.getByName("block_5").angle)==0){
                     shapeContainer.getByName("block_5").setAngle(0);
                 }
             }
@@ -414,7 +421,8 @@ class MainGame extends Phaser.Scene {
         }
 
         if(isLevelComp){
-            setTimeout(() => {                 
+            setTimeout(() => {
+                localStorage.setItem("roadCLevelComp", true);  
                 this.showEndMsg();//show end msg if all level complete
             }, "450");   
         }else{
@@ -439,7 +447,9 @@ class MainGame extends Phaser.Scene {
         setTimeout(() => { //next level auto switch 
             mainActContainer.destroy();               
             currentLvl++;
-            localStorage.setItem("roadCLevel", currentLvl);
+            if(!localStorage.getItem("roadCLevelComp")){
+                localStorage.setItem("roadCLevel", currentLvl);
+            }
             levelContainer.x=-((sW/100)*120);  
             this.removeAllLevelEvents();                  
             this.createShapesAndPos();  
