@@ -448,7 +448,9 @@ class MainGame extends Phaser.Scene {
             mainActContainer.destroy();               
             currentLvl++;
             if(!localStorage.getItem("roadCLevelComp")){
-                localStorage.setItem("roadCLevel", currentLvl);
+                if(currentLvl>localStorage.getItem("roadCLevel")){
+                    localStorage.setItem("roadCLevel", currentLvl);
+                }
             }
             levelContainer.x=-((sW/100)*120);  
             this.removeAllLevelEvents();                  
