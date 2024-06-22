@@ -478,7 +478,7 @@ class MainGame extends Phaser.Scene {
 
         //----level event-----
 
-        var menuBtn=this.add.image(0, ((sH/100)*94),'_menuBtn').setOrigin(0);
+        var menuBtn=this.add.image(0, ((sH/100)*90),'_menuBtn').setOrigin(0);
         menuBtn.scaleY=0.8;
         menuBtn.x=(sW/2)-menuBtn.width/2;  
 
