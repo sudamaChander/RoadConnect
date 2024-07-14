@@ -12,15 +12,11 @@ let playTxt;
 let sW;
 let sH;
 
-
-
-class GameConfig extends Phaser.Scene {
-    
+class GameConfig extends Phaser.Scene {    
     
     constructor(){
         super("GameBoot");
     }
-
 
 
     preload(){
@@ -107,7 +103,7 @@ class GameConfig extends Phaser.Scene {
         playTxt.x=sW/2;
         playTxt.y=connectTxt.y+((sH/100)*40);
         playTxt.scale=0;
-        playTxt.setShadow(2, 2, '#000000', 2, true, true);
+        playTxt.setShadow(2, 2, '#000000', 1, true, true);
 
 
         //---play event-----------------------------
